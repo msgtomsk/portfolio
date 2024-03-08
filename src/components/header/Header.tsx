@@ -11,7 +11,7 @@ function Header() {
     <>
       <header className="header">
         <div className="logo-container">
-          <img src="src/assets/logo.png" alt="logo" />
+          <img src="../../src/assets/logo.png" alt="logo" />
         </div>
         <div className="right-container">
           <div className="hamburger-icon">
@@ -28,7 +28,7 @@ function Header() {
         <div className="text-right">
           <img
             onClick={onClick}
-            src="src/assets/link-arrow.svg"
+            src="../../src/assets/link-arrow.svg"
             alt="hamburger"
           />
         </div>

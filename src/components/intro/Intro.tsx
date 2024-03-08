@@ -3,7 +3,7 @@ import "./Intro.less";
 function Intro() {
   return (
     <div className="component-container fixed-width-container intro-container">
-      <img src="src/assets/avatar.png" alt="arya" />
+      <img src="../../src/assets/avatar.png" alt="arya" />
       <div className="text-container">
         <h1>ARYA SIVARAJ</h1>
         <div className="brand-name">Nirvannah</div>
