@@ -1,0 +1,75 @@
+.work-container {
+  &--left,
+  &--right {
+    padding: 3.75rem 5rem 5rem;
+    border: 1px solid #fff;
+    flex: 1;
+
+    @media screen and (max-width: 767px) {
+      padding: 2rem 1.2rem;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    &--right {
+      border-left: none;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    &--right {
+      border-top: none;
+    }
+  }
+
+  .work-name {
+    color: #fff;
+    font-family: "Poppins";
+    font-size: 3.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    @media screen and (max-width: 767px) {
+      font-size: 1.25rem;
+      margin-bottom: 1.3rem;
+    }
+  }
+
+  .desc-text {
+    color: #fff;
+    font-family: "Poppins";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 275;
+    line-height: normal;
+
+    @media screen and (max-width: 767px) {
+      font-size: 0.75rem;
+    }
+  }
+
+  ul {
+    margin-top: 4.75rem;
+    padding-left: 1.5rem;
+
+    @media screen and (max-width: 767px) {
+      margin-top: 2rem;
+      padding-left: 1rem;
+    }
+
+    li {
+      list-style: disc;
+
+      @media screen and (max-width: 767px) {
+        margin-top: 0.47rem;
+      }
+
+      &::marker {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+}

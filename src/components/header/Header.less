@@ -1,0 +1,67 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem 5%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  .logo-container {
+    img {
+      @media screen and (max-width: 767px) {
+        width: 2rem;
+      }
+    }
+  }
+
+  .hamburger-icon {
+    img {
+      width: 2.71631rem;
+      height: 1.625rem;
+      cursor: pointer;
+
+      @media screen and (max-width: 767px) {
+        width: 1.8rem;
+        height: auto;
+      }
+    }
+  }
+}
+
+.side-bar {
+  position: fixed;
+  right: -40%;
+  top: 0;
+  background-color: #fff;
+  padding: 2.5rem 5%;
+  width: 40%;
+  height: 100%;
+  z-index: 1;  
+  transition: all 0.3s ease-in-out;
+  @media screen and (max-width: 767px) {
+    right: -100%;
+    width: 100%;
+  }
+
+  &.open {
+    right: 0
+  }
+
+  img {
+    cursor: pointer;
+  }
+
+  ul {
+    li {
+      color: #000;
+      margin: 1rem 0;
+      cursor: pointer;
+    }
+  }
+
+  .text-right {
+    text-align: right;
+  }
+}
