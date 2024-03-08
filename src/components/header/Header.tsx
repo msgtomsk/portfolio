@@ -11,13 +11,13 @@ function Header() {
     <>
       <header className="header">
         <div className="logo-container">
-          <img src="/assets/logo.png" alt="logo" />
+          <img src="/portfolio/assets/logo.png" alt="logo" />
         </div>
         <div className="right-container">
           <div className="hamburger-icon">
             <img
               onClick={onClick}
-              src="/assets/hamburger-icon.svg"
+              src="/portfolio/assets/hamburger-icon.svg"
               alt="hamburger"
             />
           </div>
@@ -26,7 +26,7 @@ function Header() {
 
       <div className={"side-bar " + (isOpen ? "open" : "")}>
         <div className="text-right">
-          <img onClick={onClick} src="/assets/link-arrow.svg" alt="hamburger" />
+          <img onClick={onClick} src="/portfolio/assets/link-arrow.svg" alt="hamburger" />
         </div>
         <ul>
           <li>Item 1</li>
