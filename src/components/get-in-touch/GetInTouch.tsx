@@ -22,7 +22,7 @@ function GetInTouch() {
         </div>
         <div className="get-in-touch-button-holder">
           {/* <button className="get-in-touch-button">
-            <img src="src/assets/hand.svg" alt="hand" />
+            <img src="/assets/hand.svg" alt="hand" />
             <p>Lets get in touch</p>
           </button> */}
           <Button isGetInTouch={true} onClick={onClick}></Button>

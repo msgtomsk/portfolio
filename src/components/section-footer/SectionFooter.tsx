@@ -16,7 +16,7 @@ function SectionFooter({ text, links }: SectionFooterProps) {
           return (
             <li key={link.linkText}>
               <a href={link.url || "#"}>
-                <img src="../../src/assets/link-arrow.svg" alt="arrow" />
+                <img src="/assets/link-arrow.svg" alt="arrow" />
                 <span className="section-title">{link.linkText}</span>
               </a>
             </li>

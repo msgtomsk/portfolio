@@ -62,7 +62,7 @@ function Button({
       <div className="js-magnetic-content">
         {isGetInTouch ? (
           <button className="get-in-touch-button">
-            <img src="../../src/assets/hand.svg" alt="hand" />
+            <img src="/assets/hand.svg" alt="hand" />
             <p>Lets get in touch</p>
           </button>
         ) : (
