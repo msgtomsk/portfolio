@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 import "./Button.less";
 
 function Button({
   onClick,
-  isGetInTouch,
+  isGetInTouch = false,
+  arrowDirection = "right",
 }: {
   onClick: any;
   isGetInTouch?: boolean;
+  arrowDirection?: string;
 }) {
+  const buttonRef = useRef(null);
   function initAnimation() {
     var mWrap = document.querySelectorAll(".magnetic-wrap");
 
@@ -25,8 +28,8 @@ function Button({
         y: (relY - boundingRect.height / 2 - scrollTop) * movement,
         // ease: "power3",
         ease: "power2.out",
-        duration: 0.9,
-        scale: 1.1
+        duration: 0.8,
+        scale: 1.1,
       });
     }
 
@@ -44,8 +47,8 @@ function Button({
           x: 0,
           y: 0,
           // ease: "power3",
-          ease: 'elastic.out(1.2, 0.4)',
-          duration: 0.9,
+          ease: "elastic.out(1.2, 0.4)",
+          duration: 1,
         });
       });
     });
@@ -57,7 +60,7 @@ function Button({
   }, []);
 
   return (
-    <div className="magnetic-wrap">
+    <div ref={buttonRef} className="magnetic-wrap">
       <div onClick={onClick} className="js-magnetic-area"></div>
       <div className="js-magnetic-content">
         {isGetInTouch ? (
@@ -66,9 +69,7 @@ function Button({
             <p>Lets get in touch</p>
           </button>
         ) : (
-          <button type="button" className="button">
-            Btn
-          </button>
+          <button type="button" className={"button " + arrowDirection}></button>
         )}
       </div>
     </div>

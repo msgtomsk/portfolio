@@ -1,0 +1,27 @@
+{
+  "1": {
+    "text": "",
+    "links": []
+  },
+  "2": {
+    "text": "View more works",
+    "links": [{ "url": "#", "linkText": "Behance" }]
+  },
+  "3": {
+    "text": "Checkout some of my interests in",
+    "links": [{ "url": "#", "linkText": "Instagram" }]
+  },
+  "4": {
+    "text": "Connect Professionally?",
+    "links": [{ "url": "#", "linkText": "LinkedIn" }]
+  },
+  "5": {
+    "text": "Know more about me?",
+    "links": [
+      { "url": "#", "linkText": "LinkedIn" },
+      { "url": "#", "linkText": "Behance" },
+      { "url": "#", "linkText": "Twitter" },
+      { "url": "#", "linkText": "Instagram" }
+    ]
+  }
+}

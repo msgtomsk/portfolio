@@ -12,7 +12,9 @@ function AboutMeCard({ imageUrl, text }: AboutMeCardProps) {
         <img src={imageUrl} alt="avatar" />
       </div>
       <div className="about-me">
-        <p>{text}</p>
+        {text.split("\n").map((i, key) => {
+          return <p key={key}>{i}</p>;
+        })}
       </div>
     </div>
   );

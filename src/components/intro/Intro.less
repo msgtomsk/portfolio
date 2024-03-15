@@ -12,7 +12,11 @@
 
   .text-container {
     text-align: center;
-    margin-top: -38%;
+    margin-top: -50%;
+
+    @media screen and (max-width: 767px) {
+      margin-top: -80%
+    }
   }
 
   h1 {
@@ -48,11 +52,38 @@
     font-style: normal;
     font-weight: 275;
     line-height: normal;
-    margin: 3.5rem 0;
+    margin: 3.5rem auto;
+    max-width: 1150px;
 
     @media screen and (max-width: 767px) {
       font-size: 0.75rem;
-      margin: 0.75rem 0;
+      margin: 0.75rem 0 2rem;
+    }
+  }
+
+  .brand-desc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      text-align: left;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: "Poppins";
+      font-size: 1.42831rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      width: 16.4375rem;
+      @media screen and (max-width: 767px) {
+        width: 60%;
+        font-size: 0.75rem;
+      }
+    }
+    & > div:last-child {
+      width: 16.4375rem;
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
     }
   }
 }

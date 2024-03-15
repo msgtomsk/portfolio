@@ -1,39 +1,75 @@
 .work-container {
+  height: 100%;
+  display: flex;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+
   &--left,
   &--right {
-    padding: 3.75rem 5rem 5rem;
     border: 1px solid #fff;
-    flex: 1;
+
+    @media screen and (min-width: 768px) {
+      width: 50%;
+    }
+  }
+  &--left {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  &--right {
+    padding: 3.75rem 5rem 5rem;
+
+    button {
+      color: #fff;
+      font-family: "Poppins";
+      font-size: 0.75rem;
+      font-style: normal;
+      font-weight: 275;
+      line-height: normal;
+      background: transparent;
+      border: 0.5px solid #fff;
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        transform: rotate(-45deg);
+        margin-left: 1rem;
+      }
+    }
 
     @media screen and (max-width: 767px) {
       padding: 2rem 1.2rem;
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    &--right {
-      border-left: none;
-    }
-  }
-
-  @media screen and (max-width: 767px) {
-    &--right {
       border-top: none;
+      flex: 1;
+    }
+    @media screen and (min-width: 768px) {
+      border-left: none;
+
+      button {
+        display: none;
+      }
     }
   }
 
   .work-name {
     color: #fff;
     font-family: "Poppins";
-    font-size: 3.25rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
-    line-height: normal;
+    line-height: 130.769%; /* 2.61538rem */
+    margin-bottom: 1rem;
 
     @media screen and (max-width: 767px) {
-      font-size: 1.25rem;
-      margin-bottom: 1.3rem;
+      font-size: 0.875rem;
     }
   }
 

@@ -4,17 +4,11 @@ import $ from "jquery";
 
 import "./OtherCapabilities.less";
 
-import SectionFooter from "../section-footer/SectionFooter";
-import Text from "../text/Text";
-
-const FOOTER_LINKS = [{ url: "#", linkText: "Instagram" }];
 const CAPABILITIES = [
   "Motion Graphics",
   "2D Animation",
-  "2D Animation 1",
-  "2D Animation 2",
-  "2D Animation 3",
-  "2D Animation 4",
+  "Illustrations",
+  "Video editing",
 ];
 
 function OtherCapabilities() {
@@ -156,16 +150,22 @@ function OtherCapabilities() {
       ctx.arc(this.x, this.y, this.radius, 0, TWO_PI);
       ctx.font = textFontSize + " Poppins";
       ctx.textAlign = "center";
-      ctx.fillStyle = "#fff";
-      ctx.fillText(text, this.x, this.y + 5);
-      //   ctx.fill();
-      ctx.strokeStyle = "#fff";
-      ctx.stroke();
+      // ctx.fillStyle = "#fff";
+      // ctx.fillText(text, this.x, this.y + 5);
+      // ctx.strokeStyle = "#fff";
+      // ctx.stroke();
 
       // To add hover state
       if (ctx.isPointInPath(clientX, clientY)) {
+        ctx.fillStyle = "#39ffc3";
+        ctx.fillText(text, this.x, this.y + 5);
+        ctx.strokeStyle = "#39ffc3";
       } else {
+        ctx.fillStyle = "#fff";
+        ctx.fillText(text, this.x, this.y + 5);
+        ctx.strokeStyle = "#fff";
       }
+      ctx.stroke();
     };
 
     //---------------------------------------
@@ -403,7 +403,6 @@ function OtherCapabilities() {
   }, []);
   return (
     <div className="component-container other-capabilities-container">
-      <Text text="Other Capabilities"></Text>
       <div>
         <div className="phone"></div>
         <div className="tablet"></div>
@@ -416,16 +415,12 @@ function OtherCapabilities() {
       {/* <ul>
         {CAPABILITIES.map((capability: string) => {
           return (
-            <li className="capability" key={capability}>
-              {capability}
+            <li className="capability" key={capability}>              
+              <img src="" alt="" />
             </li>
           );
         })}
       </ul> */}
-      <SectionFooter
-        text="Checkout some of my interests in"
-        links={FOOTER_LINKS}
-      ></SectionFooter>
     </div>
   );
 }

@@ -18,6 +18,18 @@
       right: 0;
       bottom: 0;
     }
+
+    &:hover {
+      & + .js-magnetic-content {
+        .button:not(.down) {
+          transform: none;
+        }
+
+        .get-in-touch-button img {
+          transform: rotate(30deg);
+        }
+      }
+    }
   }
 
   .button {
@@ -30,11 +42,21 @@
     align-items: center;
     background-color: transparent;
     cursor: pointer;
-    transition: all 0.2s ease-out;
+    transition: all 0.1s ease-out;
+    background-image: url(/portfolio/assets/right-arrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(-45deg);
+    box-shadow: 1px -1px 40px -10px #39ffc3;
+
+    &.down {
+      transform: rotate(90deg);
+    }
 
     @media screen and (max-width: 767px) {
       width: 3.125rem;
       height: 3.125rem;
+      background-image: url(/portfolio/assets/right-arrow-mobile.svg);
     }
   }
 }

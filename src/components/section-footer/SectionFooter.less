@@ -1,21 +1,46 @@
 .section-footer {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-top: 3.8rem;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.56rem 5%;
+  background: linear-gradient(0deg, #000 50%, rgba(102, 102, 102, 0) 100%);
+  .footer-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    @media screen and (max-width: 767px) {
+      flex: 1;
+      gap: 0.5rem;
+    }
+  }
 
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+    span {
+      color: #fff;
+      text-align: center;
+      font-family: "Poppins";
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
   }
 
   ul {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 1.25rem;
 
     @media screen and (min-width: 768px) {
-      margin-left: 2rem;
-      margin-top: 0;
+      margin-left: 1rem;
     }
 
     li {
