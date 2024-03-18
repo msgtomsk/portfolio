@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import $ from "jquery";
 
 import "./OtherCapabilities.less";
+import SOFTWARES from "../../data/known-softwares.json";
 
 const CAPABILITIES = [
   "Motion Graphics",
@@ -12,386 +13,163 @@ const CAPABILITIES = [
 ];
 
 function OtherCapabilities() {
-  const initCanvas = () => {
+  function initCanvas() {
+    // Thanks to https://codepen.io/wikyware-net/pen/qBRbOYZ
+
     // Thanks to https://codepen.io/asha23/pen/NWoZVL
+    // Thanks to https://codepen.io/MightyPenn/pen/PoQQYOB
 
-    //---------------------------------------
-    // Set up ball options
-    //---------------------------------------
+    var SCREEN_WIDTH = window.innerWidth;
+    var SCREEN_HEIGHT = window.innerHeight;
+    var canvas: any = document.getElementById("balls");
+    var context = canvas.getContext("2d");
+    const isMobile = window.innerWidth < 769;
+    const textSize = isMobile ? "12px" : "18px";
 
-    var ballCount = CAPABILITIES.length, // How many balls
-      DAMPING = 0.4, // Damping
-      GRAVITY = 0.01, // Gravity strength
-      SPEED = 1, // Ball speed
-      ballAdditionTime = 100, // How fast are balls added
-      topOffset = 800, // Adjust this for initial ball spawn point
-      ballDensity = 20, // How dense are the balls
-      ball_1_size = 120, // Ball 1 size
-      ball_2_size = 150, // Ball 2 size
-      stackBall = true, // Stack the balls (or false is overlap)
-      textFontSize = "0.65794rem";
+    window.addEventListener("resize", windowResizeHandler, false);
+    setTimeout(windowResizeHandler, 1);
 
-    //---------------------------------------
-    //---------------------------------------
-    //---------------------------------------
+    function windowResizeHandler() {
+      var $canvasDiv = $(".canvas-holder");
+      SCREEN_WIDTH = $canvasDiv.innerWidth()!;
+      SCREEN_HEIGHT = $canvasDiv.innerHeight()!;
 
-    // Canvas sizes for different breakpoints
+      canvas.width = SCREEN_WIDTH;
+      canvas.height = SCREEN_HEIGHT;
+    }
 
-    function doQueryCheck() {
-      if ($(".phone").css("float") === "none") {
-        ball_1_size = 120;
-        ball_2_size = 120;
-      }
-      if ($(".tablet").css("float") === "none") {
-        ball_1_size = 150;
-        ball_2_size = 150;
-      }
-      if ($(".small-desktop").css("float") === "none") {
-        ball_1_size = 250;
-        ball_2_size = 250;
-      }
+    var balls: any = [];
+    var NUM_BALLS = CAPABILITIES.length;
+    var bounce = -0.8;
 
-      if ($(".large-desktop").css("float") === "none") {
-        ball_1_size = 325;
-        ball_2_size = 325;
-        textFontSize = "1.42831rem";
+    bounce2();
+
+    function bounce2() {
+      createBalls();
+      b2_loop();
+    }
+
+    function createBalls() {
+      balls = [];
+      const r = isMobile ? 80 : 130;
+      for (var i = 0; i < NUM_BALLS; i++) {
+        var c = parseInt((Math.random() * 55 + 200) as any);
+        if (Math.abs(c - 238) < 5) {
+          c = c > 238 ? 243 : 233;
+        }
+        var ball = {
+          radius: r,
+          fillColor: c,
+          vx: Math.random() * 10 - 5,
+          vy: Math.random() * 10 - 5,
+          mass: r,
+          x: Math.random() * SCREEN_WIDTH,
+          y: Math.random() * SCREEN_HEIGHT,
+          update: function () {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x + this.radius > SCREEN_WIDTH) {
+              this.x = SCREEN_WIDTH - this.radius;
+              this.vx *= bounce;
+            } else if (this.x - this.radius < 0) {
+              this.x = this.radius;
+              this.vx *= bounce;
+            }
+            if (this.y + this.radius > SCREEN_HEIGHT) {
+              this.y = SCREEN_HEIGHT - this.radius;
+              this.vy *= bounce;
+            } else if (this.y - this.radius < 0) {
+              this.y = this.radius;
+              this.vy *= bounce;
+            }
+          },
+          draw: function (i: number) {
+            context.beginPath();
+            context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+            context.font = textSize + " Poppins";
+            context.textAlign = "center";
+            context.fillStyle = "#fff";
+            context.fillText(CAPABILITIES[i], this.x, this.y + 5);
+            context.strokeStyle = "#fff";
+            context.stroke();
+          },
+        };
+        balls.push(ball);
       }
     }
 
-    //---------------------------------------
-    // Canvas globals
-    //---------------------------------------
+    function b2_loop() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < NUM_BALLS; i++) {
+        balls[i].update();
+      }
+      for (i = 0; i < NUM_BALLS - 1; i++) {
+        var ball1 = balls[i];
+        for (var j = i + 1; j < NUM_BALLS; j++) {
+          var ball2 = balls[j];
+          checkCollision(ball1, ball2);
+        }
+      }
+      for (var i = 0; i < NUM_BALLS; i++) {
+        balls[i].draw(i);
+      }
+      // recursively calling this function
+      window.requestAnimationFrame(b2_loop);
+    }
 
-    var canvas: any,
-      ctx: any,
-      TWO_PI = Math.PI * 2,
-      balls: Array<any> = [],
-      clientX = 0,
-      clientY = 0,
-      s: boolean,
-      i: number;
+    function checkCollision(ball0: any, ball1: any) {
+      var dx = ball1.x - ball0.x;
+      var dy = ball1.y - ball0.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < ball0.radius + ball1.radius) {
+        var angle = Math.atan2(dy, dx);
+        var sin = Math.sin(angle);
+        var cos = Math.cos(angle);
+        var pos0: any = new (Point as any)(0, 0);
+        var pos1 = rotate(dx, dy, sin, cos, true);
+        var vel0 = rotate(ball0.vx, ball0.vy, sin, cos, true);
+        var vel1 = rotate(ball1.vx, ball1.vy, sin, cos, true);
+        var vxTotal = vel0.x - vel1.x;
+        vel0.x =
+          ((ball0.mass - ball1.mass) * vel0.x + 2 * ball1.mass * vel1.x) /
+          (ball0.mass + ball1.mass);
+        vel1.x = vxTotal + vel0.x;
+        var absV = Math.abs(vel0.x) + Math.abs(vel1.x);
+        var overlap = ball0.radius + ball1.radius - Math.abs(pos0.x - pos1.x);
+        pos0.x += (vel0.x / absV) * overlap;
+        pos1.x += (vel1.x / absV) * overlap;
+        var pos0F = rotate(pos0.x, pos0.y, sin, cos, false);
+        var pos1F = rotate(pos1.x, pos1.y, sin, cos, false);
+        ball1.x = ball0.x + pos1F.x;
+        ball1.y = ball0.y + pos1F.y;
+        ball0.x = ball0.x + pos0F.x;
+        ball0.y = ball0.y + pos0F.y;
+        var vel0F = rotate(vel0.x, vel0.y, sin, cos, false);
+        var vel1F = rotate(vel1.x, vel1.y, sin, cos, false);
+        ball0.vx = vel0F.x;
+        ball0.vy = vel0F.y;
+        ball1.vx = vel1F.x;
+        ball1.vy = vel1F.y;
+      }
+    }
 
-    //---------------------------------------
-    // do the animation
-    //---------------------------------------
-
-    (window as any).requestAnimFrame =
-      window.requestAnimationFrame ||
-      (window as any).webkitRequestAnimationFrame ||
-      (window as any).mozRequestAnimationFrame ||
-      (window as any).oRequestAnimationFrame ||
-      (window as any).msRequestAnimationFrame ||
-      function (callback: TimerHandler) {
-        window.setTimeout(callback, ballAdditionTime);
-      };
-
-    //---------------------------------------
-    // set up the ball
-    //---------------------------------------
-
-    var Ball = function (this: any, x: any, y: any, radius: any) {
+    function Point(this: any, x?: any, y?: any) {
       this.x = x;
       this.y = y;
-      this.px = x;
-      this.py = y;
-      this.fx = 0;
-      this.fy = 0;
-      this.radius = radius;
+    }
 
-      // 2 Different ball sizes
-
-      if (Math.round(Math.random()) === 0) {
-        this.width = ball_1_size;
-        this.height = ball_1_size;
-        if (stackBall) {
-          this.radius = ball_1_size / 2;
-        }
+    function rotate(x: any, y: any, si: any, co: any, rev: any) {
+      var result = new (Point as any)();
+      if (rev) {
+        result.x = x * co + y * si;
+        result.y = y * co - x * si;
       } else {
-        this.width = ball_2_size;
-        this.height = ball_2_size;
-        if (stackBall) {
-          this.radius = ball_2_size / 2;
-        }
+        result.x = x * co - y * si;
+        result.y = y * co + x * si;
       }
-    };
-
-    //---------------------------------------
-    // Apply the physics
-    //---------------------------------------
-
-    Ball.prototype.apply_force = function (delta: any) {
-      delta *= delta;
-      this.fy += GRAVITY;
-      this.x += this.fx * delta;
-      this.y += this.fy * delta;
-      this.fx = this.fy = 0;
-    };
-
-    //---------------------------------------
-    // Newtonian motion algorithm
-    //---------------------------------------
-
-    Ball.prototype.velocity = function () {
-      var nx = this.x * 2 - this.px;
-      var ny = this.y * 2 - this.py;
-      this.px = this.x;
-      this.py = this.y;
-      this.x = nx;
-      this.y = ny;
-    };
-
-    //---------------------------------------
-    // Ball prototype
-    //---------------------------------------
-
-    Ball.prototype.draw = function (ctx: any, text: string) {
-      // Wireframe ball
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, TWO_PI);
-      ctx.font = textFontSize + " Poppins";
-      ctx.textAlign = "center";
-      // ctx.fillStyle = "#fff";
-      // ctx.fillText(text, this.x, this.y + 5);
-      // ctx.strokeStyle = "#fff";
-      // ctx.stroke();
-
-      // To add hover state
-      if (ctx.isPointInPath(clientX, clientY)) {
-        ctx.fillStyle = "#39ffc3";
-        ctx.fillText(text, this.x, this.y + 5);
-        ctx.strokeStyle = "#39ffc3";
-      } else {
-        ctx.fillStyle = "#fff";
-        ctx.fillText(text, this.x, this.y + 5);
-        ctx.strokeStyle = "#fff";
-      }
-      ctx.stroke();
-    };
-
-    //---------------------------------------
-    // resolve collisions (ball on ball)
-    //---------------------------------------
-
-    var resolve_collisions = function (ip?: any) {
-      var i = balls.length;
-      while (i--) {
-        var ball_1 = balls[i];
-        var n = balls.length;
-        while (n--) {
-          if (n == i) continue;
-          var ball_2 = balls[n];
-          var diff_x = ball_1.x - ball_2.x;
-          var diff_y = ball_1.y - ball_2.y;
-          var length = diff_x * diff_x + diff_y * diff_y;
-          var dist = Math.sqrt(length);
-          var real_dist = dist - (ball_1.radius + ball_2.radius);
-
-          if (real_dist < 0) {
-            var vel_x1 = ball_1.x - ball_1.px;
-            var vel_y1 = ball_1.y - ball_1.py;
-            var vel_x2 = ball_2.x - ball_2.px;
-            var vel_y2 = ball_2.y - ball_2.py;
-            var depth_x = diff_x * (real_dist / dist);
-            var depth_y = diff_y * (real_dist / dist);
-            ball_1.x -= depth_x * 0.5;
-            ball_1.y -= depth_y * 0.5;
-            ball_2.x += depth_x * 0.5;
-            ball_2.y += depth_y * 0.5;
-
-            if (ip) {
-              var pr1 =
-                  (DAMPING * (diff_x * vel_x1 + diff_y * vel_y1)) / length,
-                pr2 = (DAMPING * (diff_x * vel_x2 + diff_y * vel_y2)) / length;
-
-              vel_x1 += pr2 * diff_x - pr1 * diff_x;
-              vel_x2 += pr1 * diff_x - pr2 * diff_x;
-              vel_y1 += pr2 * diff_y - pr1 * diff_y;
-              vel_y2 += pr1 * diff_y - pr2 * diff_y;
-              ball_1.px = ball_1.x - vel_x1;
-              ball_1.py = ball_1.y - vel_y1;
-              ball_2.px = ball_2.x - vel_x2;
-              ball_2.py = ball_2.y - vel_y2;
-            }
-          }
-        }
-      }
-    };
-
-    //---------------------------------------
-    // Bounce off the walls
-    //---------------------------------------
-
-    var check_walls = function () {
-      var i = balls.length;
-      while (i--) {
-        var ball = balls[i];
-
-        if (ball.x < ball.radius) {
-          var vel_x = ball.px - ball.x;
-          ball.x = ball.radius;
-          ball.px = ball.x - vel_x * DAMPING;
-        } else if (ball.x + ball.radius > canvas.width) {
-          vel_x = ball.px - ball.x;
-          ball.x = canvas.width - ball.radius;
-          ball.px = ball.x - vel_x * DAMPING;
-        }
-
-        // Ball is new. So don't do collision detection until it hits the canvas. (with an offset to stop it snapping)
-        if (ball.y > 100) {
-          if (ball.y < ball.radius) {
-            var vel_y = ball.py - ball.y;
-            ball.y = ball.radius;
-            ball.py = ball.y - vel_y * DAMPING;
-          } else if (ball.y + ball.radius > canvas.height) {
-            vel_y = ball.py - ball.y;
-            ball.y = canvas.height - ball.radius;
-            ball.py = ball.y - vel_y * DAMPING;
-          }
-        }
-      }
-    };
-
-    //---------------------------------------
-    // Add a ball to the canvas
-    //---------------------------------------
-
-    var add_ball = function (x?: any, y?: any, r?: any) {
-      (x = x || Math.random() * canvas.width),
-        (y = -topOffset),
-        (r = r || 30 + Math.random() * ballDensity),
-        (s = true),
-        (i = balls.length);
-
-      while (i--) {
-        var ball = balls[i];
-        var diff_x = ball.x - x;
-        var diff_y = ball.y - y;
-        var dist = Math.sqrt(diff_x * diff_x + diff_y * diff_y);
-
-        if (dist < ball.radius + r) {
-          s = false;
-          break;
-        }
-      }
-      i = balls.length;
-
-      if (s) {
-        balls.push(new (Ball as any)(x, y, r));
-      }
-    };
-
-    //---------------------------------------
-    // iterate balls
-    //---------------------------------------
-
-    var update = function () {
-      var iter = 1;
-      var delta = SPEED / iter;
-
-      while (iter--) {
-        var i = balls.length;
-        while (i--) {
-          balls[i].apply_force(delta);
-          balls[i].velocity();
-        }
-
-        resolve_collisions();
-        check_walls();
-
-        i = balls.length;
-        while (i--) {
-          balls[i].velocity();
-        }
-
-        resolve_collisions();
-        check_walls();
-      }
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      i = balls.length;
-      while (i--) {
-        balls[i].draw(ctx, CAPABILITIES[i]);
-      }
-
-      (window as any).requestAnimFrame(update);
-    };
-
-    //---------------------------------------
-    // Set up the canvas object
-    //---------------------------------------
-
-    function doBalls() {
-      canvas = document.getElementById("balls");
-      ctx = canvas.getContext("2d");
-      var $canvasDiv = $(".canvas-holder");
-
-      function respondCanvas() {
-        canvas.height = $canvasDiv.innerHeight()! - 64;
-        canvas.width = $canvasDiv.innerWidth()! - 64;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-      respondCanvas();
-
-      // Android friendly window resize
-
-      var doit: any;
-      function resizedw(appwidth: any) {
-        if ($(window).width() != appwidth) {
-          // Reset everything on screen resize
-          //this.location.reload(false);
-          respondCanvas();
-        }
-        past_width = $(window).width();
-      }
-
-      var past_width = $(window).width();
-
-      window.onresize = function () {
-        clearTimeout(doit);
-        doit = setTimeout(function () {
-          resizedw(past_width);
-        }, 100);
-      };
-
-      ballAdd();
+      return result;
     }
-
-    function ballAdd() {
-      var count = 1;
-      var timer = setInterval(function () {
-        addBallTimer();
-      }, 100);
-
-      var addBallTimer = function () {
-        count++;
-        add_ball();
-
-        if (balls.length == ballCount) {
-          stopTimer();
-        }
-      };
-
-      var stopTimer = function () {
-        clearInterval(timer);
-      };
-
-      update();
-    }
-
-    function addHoverEffect() {
-      canvas.onmousemove = function (e: MouseEvent) {
-        var rect = this.getBoundingClientRect();
-        clientX = e.clientX - rect.left;
-        clientY = e.clientY - rect.top;
-      };
-    }
-    // Inject the canvas into the dom.
-
-    doQueryCheck();
-    doBalls();
-
-    addHoverEffect();
-  };
+  }
   useEffect(() => {
     // gsap.to(".capability", {
     //   y: 0,
@@ -399,6 +177,7 @@ function OtherCapabilities() {
     //   ease: "bounce.out",
     //   scale: 1
     // });
+
     initCanvas();
   }, []);
   return (
@@ -421,6 +200,17 @@ function OtherCapabilities() {
           );
         })}
       </ul> */}
+      <div className="softwares">
+        {SOFTWARES.map((software: any) => {
+          return (
+            <img
+              key={software.altText}
+              src={software.imgURL}
+              alt={software.altText}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

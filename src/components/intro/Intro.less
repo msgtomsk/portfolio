@@ -2,27 +2,42 @@
   text-align: center;
   position: relative;
 
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   img {
-    object-fit: cover;
+    object-fit: contain;
+    width: 500px;
 
     @media screen and (max-width: 767px) {
       width: 100%;
+      max-height: 100vh;
     }
   }
 
   .text-container {
     text-align: center;
-    margin-top: -50%;
+    // margin-top: -50%;
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+    right: 0;
+    // width: 100%;
 
     @media screen and (max-width: 767px) {
-      margin-top: -80%
+      // margin-top: -80%;
+      left: 1rem;
+      right: 1rem;
     }
   }
 
   h1 {
     color: #fff;
     font-family: Impact;
-    font-size: 9.50819rem;
+    font-size: 7.5rem;
     font-weight: 400;
     line-height: normal;
     @media screen and (max-width: 767px) {
@@ -50,7 +65,7 @@
     font-family: "Poppins";
     font-size: 2rem;
     font-style: normal;
-    font-weight: 275;
+    font-weight: 300;
     line-height: normal;
     margin: 3.5rem auto;
     max-width: 1150px;
@@ -75,14 +90,19 @@
       line-height: normal;
       width: 16.4375rem;
       @media screen and (max-width: 767px) {
-        width: 60%;
-        font-size: 0.75rem;
+        display: none;
       }
     }
     & > div:last-child {
       width: 16.4375rem;
       @media screen and (max-width: 767px) {
         display: none;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      .btn-container {
+        margin-left: auto;
       }
     }
   }

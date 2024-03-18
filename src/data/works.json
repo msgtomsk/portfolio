@@ -8,34 +8,39 @@
       "Wireframe & Visual Design",
       "Prototyping & Packaging"
     ],
-    "thumbnail": "/portfolio/assets/thumbnail1.png"
+    "thumbnail": "/portfolio/assets/thumbnail1.png",
+    "externalURL": "#"
   },
   {
     "id": "work2",
     "workName": "Motozfiyr : Automobile Social Marketplace",
     "aboutWork": "Discover a UAE-based platform on Google Playstore and Apple Store, connecting enthusiasts to buy, sell, and indulge in dream vehicles. With seamless selling and user-friendly interface, elevate your automotive passion today.",
     "skills": ["User Research", "Interface Design", "Prototype"],
-    "thumbnail": "/portfolio/assets/thumbnail2.png"
+    "thumbnail": "/portfolio/assets/thumbnail2.png",
+    "externalURL": "https://www.behance.net/gallery/138803011/Motozfyir-Social-Media-App-for-Car-enthusiats"
   },
   {
     "id": "work3",
     "workName": "Dominos : A complete UX Study",
     "aboutWork": "Conducted a comprehensive UX challenge on Domino's app, featuring detailed case study integrating heuristic evaluation, card sorting, and PET analysis. Simplified user-centric approach enhancing app usability and overall customer experience.",
     "skills": ["User Research", "Design Thinking"],
-    "thumbnail": "/portfolio/assets/thumbnail3.png"
+    "thumbnail": "/portfolio/assets/thumbnail3.png",
+    "externalURL": "https://www.behance.net/gallery/128450363/Solid-Waste-Management-App"
   },
   {
     "id": "work4",
     "workName": "Solid Waste management Application",
     "aboutWork": "A UI/UX application for managing solid waste, addressing the principles of manage, reduce, reuse, and recycle. Simplifies waste management with intuitive features, promoting eco-friendly practices for a sustainable future.",
     "skills": ["UX Research", "Wireframing & Visual Designing", "Prototyping"],
-    "thumbnail": "/portfolio/assets/thumbnail4.png"
+    "thumbnail": "/portfolio/assets/thumbnail4.png",
+    "externalURL": " https://www.behance.net/gallery/109430261/UX-Case-Study-DOMINOS"
   },
   {
     "id": "work5",
     "workName": "A Waste management Application",
     "aboutWork": "Conducted a comprehensive UX challenge on Domino's app, featuring detailed case study integrating heuristic evaluation, card sorting, and PET analysis. Simplified user-centric approach enhancing app usability and overall customer experience.",
     "skills": ["Design Thinking", "UX Research"],
-    "thumbnail": "/portfolio/assets/thumbnail4.png"
+    "thumbnail": "/portfolio/assets/thumbnail4.png",
+    "externalURL": "https://www.behance.net/gallery/109424571/UI-challenge"
   }
 ]

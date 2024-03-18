@@ -5,13 +5,17 @@ import "./Header.less";
 
 const SECTION_TITLES = [
   "Test",
-  "Selected works",
+  "Selected Projects",
   "Other Capabilities",
   "What they say about me",
   "Get in Touch",
 ];
 
-const MENU_ITEMS = ["Projects", "About Me", "Contact"];
+const MENU_ITEMS = [
+  { text: "Projects", scrollTo: "works-container" },
+  { text: "About Me", scrollTo: "about-me-container" },
+  { text: "Contact", scrollTo: "get-in-touch-container" },
+];
 
 function Header({ activeSlide = 1 }: { activeSlide: number }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +23,13 @@ function Header({ activeSlide = 1 }: { activeSlide: number }) {
 
   const onClick = () => {
     setIsOpen(!isOpen);
+  };
+
+  const onClickMenu = (menu: any) => {
+    document
+      .querySelector(`.${menu.scrollTo}`)
+      ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -71,7 +82,9 @@ function Header({ activeSlide = 1 }: { activeSlide: number }) {
         </div>
         <ul>
           {MENU_ITEMS.map((menu) => (
-            <li key={menu}>{menu}</li>
+            <li onClick={() => onClickMenu(menu)} key={menu.text}>
+              {menu.text}
+            </li>
           ))}
         </ul>
       </div>

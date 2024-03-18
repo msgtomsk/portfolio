@@ -5,23 +5,41 @@
   },
   "2": {
     "text": "View more works",
-    "links": [{ "url": "#", "linkText": "Behance" }]
+    "links": [
+      { "url": "https://www.behance.net/aryasivaraj", "linkText": "Behance" }
+    ]
   },
   "3": {
     "text": "Checkout some of my interests in",
-    "links": [{ "url": "#", "linkText": "Instagram" }]
+    "links": [
+      {
+        "url": "https://www.instagram.com/_nirvannnah_/",
+        "linkText": "Instagram"
+      }
+    ]
   },
   "4": {
     "text": "Connect Professionally?",
-    "links": [{ "url": "#", "linkText": "LinkedIn" }]
+    "links": [
+      {
+        "url": "https://www.linkedin.com/in/arya-sivaraj-b4274717a/",
+        "linkText": "LinkedIn"
+      }
+    ]
   },
   "5": {
     "text": "Know more about me?",
     "links": [
-      { "url": "#", "linkText": "LinkedIn" },
-      { "url": "#", "linkText": "Behance" },
-      { "url": "#", "linkText": "Twitter" },
-      { "url": "#", "linkText": "Instagram" }
+      {
+        "url": "https://www.linkedin.com/in/arya-sivaraj-b4274717a/",
+        "linkText": "LinkedIn"
+      },
+      { "url": "https://www.behance.net/aryasivaraj", "linkText": "Behance" },
+      {
+        "url": "https://www.instagram.com/_nirvannnah_/",
+        "linkText": "Instagram"
+      },
+      { "url": "https://twitter.com/home", "linkText": "Twitter" }
     ]
   }
 }

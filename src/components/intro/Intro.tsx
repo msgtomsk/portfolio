@@ -10,27 +10,29 @@ function Intro() {
     const tl = gsap.timeline();
 
     tl.from(".portfolio-img", {
-      yPercent: -100,
+      y: -100,
+      opacity: 0,
     })
       .to(".portfolio-img", {
-        yPercent: 0,
-        ease: "power4.out",
-        delay: 0.1,
-        duration: 1,
+        y: 0,
+        ease: "power3.out",
+        delay: 0.01,
+        duration: 2.5,
+        opacity: 1,
       })
       .from(".name-wrapper", {
-        y: -500,
+        y: -100,
         opacity: 0,
       })
       .to(".name-wrapper", {
         y: 0,
-        ease: "power1.out",
-        delay: 0.1,
-        duration: 0.5,
+        ease: "power3.out",
+        delay: 0.05,
+        duration: 1.5,
         opacity: 1,
       })
       .from(".about-brand", {
-        y: -100,
+        y: -80,
         opacity: 0,
       })
       .to(".about-brand", {
@@ -85,7 +87,7 @@ function Intro() {
           I established my professional identity under the brand name
           <span className="highlight-text"> 'Nirvannah.</span>
         </p>
-        <div>
+        <div className="btn-container">
           <Button arrowDirection="down" onClick={onClickBtn}></Button>
         </div>
         <div></div>

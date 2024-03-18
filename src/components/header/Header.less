@@ -17,6 +17,13 @@
 
   &.bg {
     background: #000;
+
+    @media screen and (max-width: 767px) {
+      .logo-container img,
+      .right-container img {
+        display: none;
+      }
+    }
   }
 
   &.scrolling {
@@ -34,8 +41,8 @@
 
   .hamburger-icon {
     img {
-      width: 2.71631rem;
-      height: 1.625rem;
+      width: 2.5rem;
+      height: 2.5rem;
       cursor: pointer;
 
       @media screen and (max-width: 767px) {
@@ -54,9 +61,11 @@
   padding: 2.5rem 5%;
   width: 40%;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
   transition: all 0.3s ease-in-out;
   text-align: center;
+  display: flex;
+  flex-direction: column;
   @media screen and (max-width: 767px) {
     right: -100%;
     width: 100%;
@@ -80,18 +89,24 @@
   ul {
     display: inline-flex;
     flex-direction: column;
+    justify-content: center;
+    margin: auto;
     li {
       color: #000;
       text-align: center;
-      font-family: Poppins;
+      font-family: "Poppins";
       font-size: 2rem;
       font-style: normal;
-      font-weight: 275;
+      font-weight: 300;
       line-height: normal;
       cursor: pointer;
-      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
       display: inline-block;
       position: relative;
+
+      @media screen and (max-width: 767px) {
+        font-size: 1rem;
+      }
 
       &::after {
         content: "";

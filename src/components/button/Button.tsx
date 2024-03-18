@@ -64,7 +64,7 @@ function Button({
       <div onClick={onClick} className="js-magnetic-area"></div>
       <div className="js-magnetic-content">
         {isGetInTouch ? (
-          <button className="get-in-touch-button">
+          <button className="get-in-touch-button hithere">
             <img src="/portfolio/assets/hand.svg" alt="hand" />
             <p>Lets get in touch</p>
           </button>

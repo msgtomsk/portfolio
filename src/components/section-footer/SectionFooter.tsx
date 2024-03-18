@@ -12,14 +12,14 @@ function SectionFooter({ activeSlide = 1 }: { activeSlide: number }) {
   const footerContent: FooterContent = (FOOTER_LINKS as any)[activeSlide];
   const footerText: string = footerContent.text;
   return (
-    <footer className="section-footer">
+    <div className="section-footer">
       <div className="footer-left">
         <Text text={footerText}></Text>
         <ul>
           {footerContent.links?.map((link: any) => {
             return (
               <li key={link.linkText}>
-                <a href={link.url || "#"}>
+                <a href={link.url || "#"} target="_blank">
                   <img src="/portfolio/assets/link-arrow.svg" alt="arrow" />
                   <span className="section-title">{link.linkText}</span>
                 </a>
@@ -32,7 +32,7 @@ function SectionFooter({ activeSlide = 1 }: { activeSlide: number }) {
         <span>0{activeSlide}//05- Scroll</span>
         <img src="/portfolio/assets/arrow-down.svg" alt="down arrow" />
       </div>
-    </footer>
+    </div>
   );
 }
 

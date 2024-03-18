@@ -1,8 +1,10 @@
+import SectionFooter from "../section-footer/SectionFooter";
 import "./GetInTouch.less";
 
 import Button from "../button/Button";
 
 function GetInTouch() {
+  const isMobile = window.innerWidth < 769;
   const onClick = () => {};
   return (
     <div className="component-container get-in-touch-container">
@@ -13,6 +15,7 @@ function GetInTouch() {
         <div className="get-in-touch-button-holder">
           <Button isGetInTouch={true} onClick={onClick}></Button>
         </div>
+        {isMobile && <SectionFooter activeSlide={5}></SectionFooter>}
       </div>
     </div>
   );

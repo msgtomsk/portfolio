@@ -20,6 +20,8 @@ function App() {
   const aboutMeCompRef = useRef(null);
   const getInTouchCompRef = useRef(null);
 
+  const isMobile = window.innerWidth < 769;
+
   const refArray = [
     introCompRef,
     worksCompRef,
@@ -60,8 +62,10 @@ function App() {
       <section ref={getInTouchCompRef}>
         <GetInTouch></GetInTouch>
       </section>
-      {activeSlide != 1 && (
-        <SectionFooter activeSlide={activeSlide}></SectionFooter>
+      {!isMobile && activeSlide != 1 && (
+        <footer>
+          <SectionFooter activeSlide={activeSlide}></SectionFooter>
+        </footer>
       )}
     </>
   );
