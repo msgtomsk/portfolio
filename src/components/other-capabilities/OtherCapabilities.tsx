@@ -41,7 +41,7 @@ function OtherCapabilities() {
 
     var balls: any = [];
     var NUM_BALLS = CAPABILITIES.length;
-    var bounce = -0.8;
+    var bounce = isMobile ? -0.8 : -1;
 
     bounce2();
 

@@ -5,7 +5,10 @@ import Button from "../button/Button";
 
 function GetInTouch() {
   const isMobile = window.innerWidth < 769;
-  const onClick = () => {};
+  const onClick = () => {
+    window.location.href =
+      "mailto:aryasivaraj97@gmail.com?subject=Let's Connect";
+  };
   return (
     <div className="component-container get-in-touch-container">
       <div className="get-in-touch-inner">
