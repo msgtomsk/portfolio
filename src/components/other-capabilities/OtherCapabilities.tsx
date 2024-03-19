@@ -23,8 +23,9 @@ function OtherCapabilities() {
     var SCREEN_HEIGHT = window.innerHeight;
     var canvas: any = document.getElementById("balls");
     var context = canvas.getContext("2d");
-    const isMobile = window.innerWidth < 769;
-    const textSize = isMobile ? "12px" : "18px";
+    const isMobile = SCREEN_WIDTH < 769;
+    const isLargeDesktop = SCREEN_WIDTH >= 1400;
+    const textSize = isMobile ? "12px" : isLargeDesktop ? "18px" : "16px";
 
     window.addEventListener("resize", windowResizeHandler, false);
     setTimeout(windowResizeHandler, 1);
@@ -51,7 +52,7 @@ function OtherCapabilities() {
 
     function createBalls() {
       balls = [];
-      const r = isMobile ? 80 : 130;
+      const r = isMobile ? 80 : isLargeDesktop ? 130 : 90;
       for (var i = 0; i < NUM_BALLS; i++) {
         var c = parseInt((Math.random() * 55 + 200) as any);
         if (Math.abs(c - 238) < 5) {
