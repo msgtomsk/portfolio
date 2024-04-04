@@ -8,7 +8,13 @@ interface FooterContent {
   links: any;
 }
 
-function SectionFooter({ activeSlide = 1 }: { activeSlide: number }) {
+function SectionFooter({
+  activeSlide = 1,
+  hidePage = false,
+}: {
+  activeSlide: number;
+  hidePage: boolean;
+}) {
   const footerContent: FooterContent = (FOOTER_LINKS as any)[activeSlide];
   const footerText: string = footerContent.text;
   return (
@@ -28,10 +34,12 @@ function SectionFooter({ activeSlide = 1 }: { activeSlide: number }) {
           })}
         </ul>
       </div>
-      <div className="footer-right">
-        <span>0{activeSlide}//05- Scroll</span>
-        <img src="/portfolio/assets/arrow-down.svg" alt="down arrow" />
-      </div>
+      {!hidePage && (
+        <div className="footer-right">
+          <span>0{activeSlide}//05- Scroll</span>
+          <img src="/portfolio/assets/arrow-down.svg" alt="down arrow" />
+        </div>
+      )}
     </div>
   );
 }

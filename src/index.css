@@ -184,7 +184,7 @@ table {
 
 @media screen and (max-width: 767px) {
   .highlight-text {
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 0.75rem;
   }
 

@@ -7,7 +7,7 @@ import Header from "./components/header/Header";
 import Intro from "./components/intro/Intro";
 import OtherCapabilities from "./components/other-capabilities/OtherCapabilities";
 import Works from "./components/works/Works";
-import AboutMe from "./components/about-me/AboutMe";
+import WhatTheySayAboutMe from "./components/about-me/WhatTheySayAboutMe";
 import GetInTouch from "./components/get-in-touch/GetInTouch";
 import SectionFooter from "./components/section-footer/SectionFooter";
 gsap.registerPlugin(ScrollTrigger);
@@ -57,7 +57,7 @@ function App() {
         <OtherCapabilities></OtherCapabilities>
       </section>
       <section ref={aboutMeCompRef}>
-        <AboutMe></AboutMe>
+        <WhatTheySayAboutMe></WhatTheySayAboutMe>
       </section>
       <section ref={getInTouchCompRef}>
         <GetInTouch></GetInTouch>
