@@ -13,7 +13,7 @@ function SectionFooter({
   hidePage = false,
 }: {
   activeSlide: number;
-  hidePage: boolean;
+  hidePage?: boolean;
 }) {
   const footerContent: FooterContent = (FOOTER_LINKS as any)[activeSlide];
   const footerText: string = footerContent.text;

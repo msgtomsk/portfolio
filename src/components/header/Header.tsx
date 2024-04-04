@@ -24,7 +24,7 @@ function Header({
   logoOnly = false,
 }: {
   activeSlide: number;
-  logoOnly: boolean;
+  logoOnly?: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);

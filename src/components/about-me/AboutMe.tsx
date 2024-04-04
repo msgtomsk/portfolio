@@ -1,7 +1,6 @@
 // import SectionFooter from "../section-footer/SectionFooter";
 import Header from "../header/Header";
 import SectionFooter from "../section-footer/SectionFooter";
-import Text from "../text/Text";
 import "./AboutMe.less";
 
 const CABABILITIES = [
