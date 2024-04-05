@@ -113,7 +113,7 @@ function AboutMe() {
                 <li>
                   Wall painting (I do work as a wall painting artist ) -{" "}
                   <a
-                    class="highlight"
+                    className="highlight"
                     target="_blank"
                     href="https://www.instagram.com/hobo_designs_/"
                   >
