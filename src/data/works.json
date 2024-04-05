@@ -6,7 +6,8 @@
     "skills": [
       "User Research",
       "Wireframe & Visual Design",
-      "Prototyping & Packaging"
+      "Prototyping",
+      "Introductory Video creation"
     ],
     "thumbnail": "/portfolio/assets/thumbnail1.png",
     "externalURL": "https://www.behance.net/gallery/194877241/Car-Designing-with-VR-Experience"
@@ -38,9 +39,9 @@
   {
     "id": "work5",
     "workName": "A Waste management Application",
-    "aboutWork": "Conducted a comprehensive UX challenge on Domino's app, featuring detailed case study integrating heuristic evaluation, card sorting, and PET analysis. Simplified user-centric approach enhancing app usability and overall customer experience.",
-    "skills": ["Design Thinking", "UX Research"],
+    "aboutWork": "An application created to promote a decrease in sedentary behaviour and increase in physical activity for a better quality of life.",
+    "skills": ["User Research ", "Interface Design"],
     "thumbnail": "/portfolio/assets/thumbnail5.png",
-    "externalURL": "https://www.behance.net/gallery/109424571/UI-challenge"
+    "externalURL": "https://www.behance.net/gallery/194998039/Application-for-people-with-Sedentary-Lifestyle"
   }
 ]

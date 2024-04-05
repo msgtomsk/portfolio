@@ -12,13 +12,13 @@ const CABABILITIES = [
   "Motion Design",
 ];
 
-const THINGS_I_LIKE = [
-  "Exploring places & food",
-  "Traditional painting ( i do digital as well )",
-  "Wall painting (I do work as a wall painting artist )  - Here’s the work link",
-  "Singing",
-  "Doing exercises",
-];
+// const THINGS_I_LIKE = [
+//   "Exploring places & food",
+//   "Traditional painting",
+//   "Wall painting (I do work as a wall painting artist ) - Here’s the work link",
+//   "Singing",
+//   "Doing exercises",
+// ];
 
 const IMAGES = [
   { src: "/portfolio/assets/arya1.png", alt: "" },
@@ -45,43 +45,39 @@ function AboutMe() {
               <div>Hello, My name is</div>
               <h2>ARYA SIVARAJ</h2>
               <p>
-                Im a Visual designer currently based in birmingham, United
+                I am a visual designer currently based in Birmingham, United
                 Kingdom. My hometown is in the southern part of India, also
-                known as God’s on country, Kerala.
+                known as "God’s Own Country," Kerala.
               </p>
 
               <p>
-                I was always a quite and shy girl, who was very interested in
-                drawing & crafting from a young age itself, after my schooling I
-                joined for Bachelors in Animation & Graphic Designing in St.
-                Josephs College of Communication. After my college, I was placed
-                at the Globally renowned company Infosys as an Experience
-                Designer, also promoted as Senior Experience Designer in 2
-                years.
+                I was always a quiet and shy girl who was very interested in
+                drawing and crafting from a young age. After completing my
+                schooling, I pursued a Bachelor's in Animation & Graphic
+                Designing at St. Joseph's College of Communication. Following my
+                college education, I landed a position at the globally renowned
+                company Infosys as an Experience Designer, and within two years,
+                I was promoted to Senior Experience Designer.
               </p>
 
               <p>
-                I’ve always manifested to do my higher education abroad, hence i
-                reached United Kingdom to my Masters in UX design, and finally
-                i’ve graduated. The transition from kerala to birmingham was
-                indeed a journey with a lot of exciting and challenging
+                I've always aspired to pursue higher education abroad, which led
+                me to the United Kingdom for my Master's in UX Design. Finally,
+                I have graduated. The transition from Kerala to Birmingham was
+                indeed a journey filled with exciting and challenging
                 experiences.
               </p>
 
               <p>
-                I love to work on finding gaps and providing solutions, thats
-                when we actually think of creative solutions, and bringing the
-                solutions to the designs, iterating and reiterating. It feels
-                like im alive, when i design.
+                I love working on identifying gaps and providing solutions. It
+                is during this process that creative solutions emerge, and
+                bringing these solutions to life in designs through iteration
+                and reiteration makes me feel truly alive.
               </p>
 
               <p>
-                Apart from designing, I enjoy making them interact and give life
-                to the elements and designs that i created,
-              </p>
-
-              <p className="highlight">
-                For me Designing + Interaction = Nirvanna.
+                Apart from designing, I enjoy making elements and designs
+                interact, giving them life.
               </p>
             </div>
           </div>
@@ -99,7 +95,7 @@ function AboutMe() {
                 })}
               </ul>
               <div className="separator"></div>
-              <p>Apart from all these, </p>
+              <p>Apart from all these,</p>
 
               <p>
                 Im a normal Ambiverted person, I like talking & making new
@@ -109,9 +105,23 @@ function AboutMe() {
 
               <p>Things i Like : </p>
               <ul className="things-i-like">
-                {THINGS_I_LIKE.map((val: string) => {
+                {/* {THINGS_I_LIKE.map((val: string) => {
                   return <li key={val}>{val}</li>;
-                })}
+                })} */}
+                <li>Exploring places & food</li>
+                <li>Traditional painting</li>
+                <li>
+                  Wall painting (I do work as a wall painting artist ) -{" "}
+                  <a
+                    class="highlight"
+                    target="_blank"
+                    href="https://www.instagram.com/hobo_designs_/"
+                  >
+                    Here’s the work link
+                  </a>
+                </li>
+                <li>Singing</li>
+                <li>Doing exercises</li>
               </ul>
             </div>
           </div>
